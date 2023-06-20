@@ -1,0 +1,56 @@
+# Ansible inventory created from ['topology.yml', 'package:topology-defaults.yml']
+#
+af:
+  ipv4: true
+box: cisco/csr1000v
+interfaces:
+- ifindex: 2
+  ifname: GigabitEthernet2
+  ipv4: 10.1.0.6/30
+  libvirt:
+    type: tunnel
+  linkindex: 2
+  name: r3 -> r2
+  neighbors:
+  - ifname: GigabitEthernet3
+    ipv4: 10.1.0.5/30
+    node: r2
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 2
+  remote_ifindex: 3
+  type: p2p
+- ifindex: 3
+  ifname: GigabitEthernet3
+  ipv4: 10.1.0.10/30
+  libvirt:
+    type: tunnel
+  linkindex: 3
+  name: r3 -> r1
+  neighbors:
+  - ifname: GigabitEthernet3
+    ipv4: 10.1.0.9/30
+    node: r1
+  ospf:
+    area: 0.0.0.0
+    network_type: point-to-point
+    passive: false
+  remote_id: 1
+  remote_ifindex: 3
+  type: p2p
+loopback:
+  ipv4: 10.0.0.3/32
+mgmt:
+  ifname: GigabitEthernet1
+  ipv4: 192.168.121.103
+  mac: 08:4f:a9:00:00:03
+min_mtu: 1500
+module:
+- ospf
+ospf:
+  af:
+    ipv4: true
+  area: 0.0.0.0
+  router_id: 10.0.0.3

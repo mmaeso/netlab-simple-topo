@@ -1,0 +1,17 @@
+---
+
+provider: libvirt
+module: [ ospf ]
+nodes:
+  r1:
+    device: csr
+  r2:
+    device: csr
+  r3:
+    device: csr
+
+links:
+  - r1-r2
+  - r2-r3
+  - r1-r3
+
